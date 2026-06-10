@@ -2,135 +2,74 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import ScrollStack, { ScrollStackItem } from './ScrollStack';
 
 // Project Data with Media & Layout Configuration
 const projects = [
   {
-    id: "elite-hotel",
-    title: "Elite Hotel",
-    category: "Full Stack • Microservices",
-    description: "Scalable hotel management system with 5+ Node.js services.",
-    longDescription: "A comprehensive Microservices-based Hotel Management System designed to streamline reservations, billing, and housekeeping. Built with a focus on scalability and service isolation.",
-    techStack: ["Node.js", "Docker", "Kubernetes", "Redis", "RabbitMQ", "Next.js"],
-    repo: "https://github.com/fawazv/Elite-hotel",
+    id: "healthcare-claims",
+    title: "MDManage Enterprise",
+    category: "Healthcare • Microservices",
+    description: "US Healthcare claims platform processing 10,000+ daily transactions.",
+    longDescription: "Enhanced a US Healthcare claims platform. Refactored legacy modules into Spring Boot microservices, reducing code duplication. Built React/Redux UI modules for provider-side workflows, ensuring accurate data visibility.",
+    techStack: ["Java", "Spring Boot", "React", "Redux", "MySQL", "REST API"],
+    repo: "#",
     demo: "#",
     color: "from-blue-600/20 to-cyan-500/20",
     hoverColor: "group-hover:from-blue-600/40 group-hover:to-cyan-500/40",
     span: "md:col-span-2 md:row-span-2",
     mediaType: "image",
-    // Abstract Network/Server for Grid
     mediaUrl: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // Code/Structure Demo for Modal
     demoUrl: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
-    id: "nxtcart",
-    title: "Nxtcart",
+    id: "commerce-core",
+    title: "CommerceCore API",
     category: "E-Commerce",
-    description: "Modern shopping platform with automated workflows.",
-    longDescription: "A modern e-commerce application featuring secure authentication, payment processing with Stripe/PayPal, and a robust admin dashboard for product management.",
-    techStack: ["Next.js", "TypeScript", "Stripe", "MongoDB", "Shadcn UI"],
-    repo: "https://github.com/fawazv/nxt-cart",
+    description: "Production-ready e-commerce REST API with automated CI/CD.",
+    longDescription: "Designed a production-ready e-commerce REST API using Spring Boot 3. Implemented Spring Security JWT across endpoints and integrated Stripe Webhooks for automated payment workflows. Deployed via GitHub Actions and Docker.",
+    techStack: ["Spring Boot 3", "Spring Security", "Stripe API", "Docker", "MySQL"],
+    repo: "#",
     demo: "#",
     color: "from-purple-600/20 to-pink-500/20",
     hoverColor: "group-hover:from-purple-600/40 group-hover:to-pink-500/40",
     span: "md:col-span-1 md:row-span-2",
     mediaType: "image",
-    // Shopping/Ecommerce Concept
     mediaUrl: "https://images.pexels.com/photos/34577/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // Shopping Interaction
     demoUrl: "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
-    id: "dropbox-clone",
-    title: "Dropbox Clone",
-    category: "Cloud Storage",
-    description: "Secure file storage with drag-and-drop & metadata.",
-    longDescription: "A functional clone of Dropbox allowing users to upload, organize, and manage files in the cloud. Features real-time updates and secure authentication.",
-    techStack: ["React", "Firebase", "Tailwind CSS"],
-    repo: "https://github.com/fawazv/dropbox-clone",
+    id: "retail-qa-tool",
+    title: "Retail QA Tool",
+    category: "Generative AI",
+    description: "NL-to-SQL Generative AI Agent with 94% query accuracy.",
+    longDescription: "Built an AI agent converting natural language to MySQL queries using Google Gemini Pro and LangChain. Implemented ChromaDB few-shot vector search to reduce hallucination and improve accuracy for data analysts.",
+    techStack: ["Python", "LangChain", "Gemini Pro", "ChromaDB", "Streamlit"],
+    repo: "https://github.com/vignesh1809-stack/Retail-QA-Tool",
     demo: "#",
     color: "from-orange-500/20 to-red-500/20",
     hoverColor: "group-hover:from-orange-500/40 group-hover:to-red-500/40",
     span: "md:col-span-1 md:row-span-1",
     mediaType: "image",
-    // Cloud/Data Abstract
     mediaUrl: "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // File Management
     demoUrl: "https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
-    id: "blog-microservices",
-    title: "Blog Platform",
+    id: "jpmc-simulation",
+    title: "JPMC Simulation",
     category: "Microservices",
-    description: "Event-driven architecture with RabbitMQ.",
-    longDescription: "Built User, Post, and Comment services with API Gateway and RabbitMQ communication. Containerized with Docker Compose and automated pipeline via GitHub Actions.",
-    techStack: ["Node.js", "RabbitMQ", "Docker"],
-    repo: "https://github.com/fawazv/blog-microservice",
+    description: "High-throughput financial transactions processing with Kafka.",
+    longDescription: "Integrated Kafka into a Spring Boot 3 microservice to process 1,000+ financial transactions per second. Implemented Spring Data JPA persistence and an optimized REST balance-query endpoint.",
+    techStack: ["Java", "Spring Boot", "Kafka", "Spring Data JPA", "H2"],
+    repo: "#",
     demo: "#",
     color: "from-green-600/20 to-teal-500/20",
     hoverColor: "group-hover:from-green-600/40 group-hover:to-teal-500/40",
     span: "md:col-span-1 md:row-span-1",
     mediaType: "image",
-    // Typing/Code Abstract
     mediaUrl: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // Server/Terminal
     demoUrl: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  },
-  {
-    id: "bookstore-app",
-    title: "Bookstore",
-    category: "MERN Stack",
-    description: "Book management with separate Frontend/Backend.",
-    longDescription: "Built RESTful APIs with Express.js and MongoDB for complete book management (CRUD). Developed a responsive React frontend integrated with Axios.",
-    techStack: ["MongoDB", "Express", "React"],
-    repo: "https://github.com/fawazv/bookstoreapp",
-    demo: "#",
-    color: "from-indigo-600/20 to-purple-500/20",
-    hoverColor: "group-hover:from-indigo-600/40 group-hover:to-purple-500/40",
-    span: "md:col-span-1 md:row-span-1",
-    mediaType: "image",
-    // Reading/Books
-    mediaUrl: "https://images.pexels.com/photos/207636/pexels-photo-207636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // Library/Shelf
-    demoUrl: "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  },
-  {
-    id: "pixabay-gallery",
-    title: "Pixabay Gallery",
-    category: "API Integration",
-    description: "Image search gallery using Pixabay API.",
-    longDescription: "Implemented image search and responsive grid gallery using React, Tailwind CSS, and Axios. Integrated Pixabay API for fetching images.",
-    techStack: ["React", "Vite", "Tailwind"],
-    repo: "https://github.com/fawazv/1.-react-tailwind-pixabay-gallery",
-    demo: "#",
-    color: "from-pink-600/20 to-rose-500/20",
-    hoverColor: "group-hover:from-pink-600/40 group-hover:to-rose-500/40",
-    span: "md:col-span-1 md:row-span-1",
-    mediaType: "image",
-    // Color/Art
-    mediaUrl: "https://images.pexels.com/photos/1616403/pexels-photo-1616403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // Searching/Scanning
-    demoUrl: "https://images.pexels.com/photos/276452/pexels-photo-276452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  },
-  {
-    id: "room-upload",
-    title: "Room Upload",
-    category: "Cloudinary",
-    description: "Secure image upload service details.",
-    longDescription: "Built secure image upload flow using Express, Multer, and Cloudinary SDK with TypeScript backend. Developed responsive React + Vite frontend.",
-    techStack: ["React", "Multer", "Cloudinary"],
-    repo: "https://github.com/fawazv/multer-cloudinary",
-    demo: "#",
-    color: "from-yellow-600/20 to-orange-500/20",
-    hoverColor: "group-hover:from-yellow-600/40 group-hover:to-orange-500/40",
-    span: "md:col-span-1 md:row-span-1",
-    mediaType: "image",
-    // Data Transfer
-    mediaUrl: "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    // Upload/Processing
-    demoUrl: "https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-  },
+  }
 ];
 
 const INITIAL_VISIBLE_COUNT = 5;
@@ -167,107 +106,51 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Bento Grid Layout */}
-        <motion.div 
-            layout 
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(280px,auto)]"
-        >
-            <AnimatePresence mode="popLayout">
-                {visibleProjects.map((project, index) => (
-                    <motion.div
-                        key={project.id}
-                        layoutId={project.id}
-                        onClick={() => setSelectedId(project.id)}
-                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                        viewport={{ once: true }}
-                        className={`group relative rounded-3xl overflow-hidden cursor-pointer border border-white/10 bg-white/5 backdrop-blur-md ${project.span}`}
-                        whileHover={{ scale: 1.015 }}
-                    >
-                        {/* Media Background - Always 'mediaUrl' for Grid */}
-                        <img 
-                            src={project.mediaUrl}
-                            alt={project.title}
-                            className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-all duration-700 group-hover:scale-110"
-                        />
+        {/* Scroll Stack Layout */}
+        <div className="h-[500px] w-full border border-white/10 rounded-[40px] overflow-hidden bg-black/20 backdrop-blur-sm relative">
+            <ScrollStack itemDistance={120} baseScale={0.8} useWindowScroll={false}>
+                {projects.map((project) => (
+                    <ScrollStackItem key={project.id} itemClassName="overflow-hidden p-0 border border-white/10 cursor-pointer">
+                        <div 
+                            className="absolute inset-0 w-full h-full"
+                            onClick={() => setSelectedId(project.id)}
+                        >
+                            {/* Gradient Overlay */}
+                            <div className={`absolute inset-0 bg-linear-to-br ${project.color} ${project.hoverColor} transition-all duration-500 opacity-60 mix-blend-overlay`} />
+                            
+                            {/* Darkener */}
+                            <div className="absolute inset-0 bg-black/40 hover:bg-black/20 transition-colors duration-500" />
 
-                        {/* Gradient Overlay */}
-                        <div className={`absolute inset-0 bg-linear-to-br ${project.color} ${project.hoverColor} transition-all duration-500 opacity-60 group-hover:opacity-80 mix-blend-overlay`} />
-                        
-                        {/* Darkener */}
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+                            {/* Noise */}
+                            <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-                        {/* Noise */}
-                        <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+                            <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-between z-10 pointer-events-none">
+                                <div className="flex justify-between items-start">
+                                     <span className="inline-block px-4 py-2 rounded-full bg-black/40 border border-white/10 text-sm font-mono text-blue-300 backdrop-blur-md">
+                                        {project.category}
+                                     </span>
+                                </div>
 
-                        <div className="absolute inset-0 p-8 flex flex-col justify-between z-10">
-                            <div className="flex justify-between items-start">
-                                 <span className="inline-block px-3 py-1 rounded-full bg-black/40 border border-white/10 text-xs font-mono text-blue-300 backdrop-blur-md">
-                                    {project.category}
-                                 </span>
-                                 <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white transform -rotate-45 group-hover:rotate-0 transition-transform duration-300">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
-                                 </div>
-                            </div>
-
-                            <div>
-                                <h3 className="text-2xl font-bold text-white mb-2 leading-tight group-hover:translate-x-1 transition-transform drop-shadow-lg">{project.title}</h3>
-                                <p className="text-gray-200 text-sm line-clamp-3 leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity drop-shadow-md">
-                                    {project.description}
-                                </p>
-                                
-                                <div className="flex flex-wrap gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-                                    {project.techStack.slice(0, 3).map(t => (
-                                        <span key={t} className="text-[10px] uppercase tracking-wider text-white/80 bg-black/40 px-2 py-1 rounded backdrop-blur-sm border border-white/5">
-                                            {t}
-                                        </span>
-                                    ))}
+                                <div>
+                                    <h3 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight drop-shadow-lg">{project.title}</h3>
+                                    <p className="text-gray-200 text-lg md:text-xl line-clamp-2 leading-relaxed opacity-90 drop-shadow-md">
+                                        {project.description}
+                                    </p>
+                                    
+                                    <div className="flex flex-wrap gap-2 mt-6">
+                                        {project.techStack.slice(0, 4).map(t => (
+                                            <span key={t} className="text-xs uppercase tracking-wider text-white/90 bg-white/10 px-3 py-1 rounded backdrop-blur-sm border border-white/10">
+                                                {t}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </motion.div>
+                    </ScrollStackItem>
                 ))}
-            </AnimatePresence>
-        </motion.div>
-
-        {/* Pagination Buttons */}
-        <motion.div layout className="flex justify-center mt-12">
-            {hasMore ? (
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setVisibleCount(prev => prev + 6)}
-                    className="px-8 py-3 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors backdrop-blur-md flex items-center gap-2 group"
-                >
-                    View More Projects
-                    <svg className="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                </motion.button>
-            ) : projects.length > INITIAL_VISIBLE_COUNT && (
-                 <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                        const projectsSection = document.getElementById('projects');
-                        if (projectsSection) {
-                            projectsSection.scrollIntoView({ behavior: 'smooth' });
-                        }
-                        setVisibleCount(INITIAL_VISIBLE_COUNT);
-                    }}
-                    className="px-8 py-3 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors backdrop-blur-md flex items-center gap-2 group"
-                 >
-                    Show Less
-                    <svg className="w-4 h-4 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                    </svg>
-                 </motion.button>
-            )}
-        </motion.div>
+            </ScrollStack>
+        </div>
 
         {/* Enhanced Modal */}
         <AnimatePresence>

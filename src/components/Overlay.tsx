@@ -20,9 +20,9 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: any }) {
             style={{ opacity: opacity1, y: y1 }}
             className="absolute inset-0 flex items-center justify-center p-8"
         >
-            <div className="text-center">
-                <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-4">Mohammed Fawaz.</h1>
-                <p className="text-xl md:text-2xl font-light text-gray-300">Full Stack Developer.</p>
+            <div className="text-center mt-64 md:mt-80">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Satya Venkata Vignesh Balusu.</h1>
+                <p className="text-lg md:text-xl font-light text-gray-300">Java Full Stack Developer.</p>
             </div>
         </motion.div>
 
@@ -42,7 +42,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: any }) {
             className="absolute inset-0 flex items-center justify-end p-8 md:p-24 text-right"
         >
             <div className="max-w-2xl">
-                <h2 className="text-5xl md:text-7xl font-bold leading-tight">Expertise in Next.js, <br/><span className="text-purple-500">Node.js</span> & Cloud.</h2>
+                <h2 className="text-5xl md:text-7xl font-bold leading-tight">Expertise in Spring Boot, <br/><span className="text-purple-500">Microservices</span> & Cloud.</h2>
             </div>
         </motion.div>
     </div>

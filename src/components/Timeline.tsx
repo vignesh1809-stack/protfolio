@@ -2,34 +2,35 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import ScrollFloat from './ScrollFloat';
 
 const TIMELINE_DATA = [
   {
-    year: "2024 - Present",
-    title: "Full Stack Developer",
-    org: "Freelance & Open Source",
-    description: "Architecting enterprise-scale applications like 'Elite Hotel' (Microservices) and 'Nxtcart' (E-commerce). Expertise in Next.js, Docker, Kubernetes, and Cloud Architecture.",
+    year: "Jan 2025 - Present",
+    title: "Software Engineer — Java Full Stack & Gen AI",
+    org: "Unisoft Solutions",
+    description: "Developed production-grade Spring Boot microservices serving enterprise healthcare clients. Optimized SQL pipelines improving response times by 78%, and integrated Generative AI modules (LangChain, OpenAI API).",
     type: "work",
   },
   {
-    year: "2023",
-    title: "The Pivot to Tech",
-    org: "Self-Taught Journey",
-    description: "Graduated with a Bachelor of Commerce but discovered a passion for problem-solving. Dedicated 1000+ hours to mastering the MERN stack and software engineering fundamentals.",
-    type: "milestone",
+    year: "May 2023 - Dec 2024",
+    title: "Associate Software Engineer — Java Full Stack",
+    org: "Intechfy Solutions",
+    description: "Developed full-stack enterprise features using Java, Spring Boot, and React.js handling 10,000+ daily transactions. Refactored monolithic modules into clean microservices.",
+    type: "work",
   },
   {
-    year: "2020 - 2023",
-    title: "Bachelor of Commerce",
-    org: "Calicut University",
-    description: "Graduated with a specialization in Co-operation. Developed a strong analytical mindset and understanding of business logic.",
+    year: "Education",
+    title: "B.Tech. Computer Science Engineering",
+    org: "Pragati Engineering College",
+    description: "Graduated with a CGPA of 7.08. Gained strong foundational knowledge in data structures, algorithms, and software engineering principles.",
     type: "education",
   },
   {
-    year: "2018 - 2020",
-    title: "Computer Applications",
-    org: "GHSS Tirurangadi",
-    description: "Higher Secondary in Commerce with Computer Applications. Early exposure to programming concepts which sparked my initial interest in tech.",
+    year: "Higher Secondary",
+    title: "Senior Secondary (MPC)",
+    org: "Tirumala Junior College / BIEAP",
+    description: "Completed with 98.2%. Focused on Mathematics, Physics, and Chemistry.",
     type: "education",
   },
 ];
@@ -53,9 +54,18 @@ export default function Timeline() {
            transition={{ duration: 0.8, ease: "easeOut" }}
            className="text-center mb-20"
         >
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-             My <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400">Journey</span>
-          </h2>
+          <div className="mb-6 flex justify-center">
+            <ScrollFloat
+              animationDuration={1}
+              ease='back.inOut(2)'
+              scrollStart='center bottom+=50%'
+              scrollEnd='bottom bottom-=40%'
+              stagger={0.03}
+              textClassName="text-5xl md:text-7xl font-bold text-white tracking-tight"
+            >
+              My Journey
+            </ScrollFloat>
+          </div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
             From writing my first "Hello World" to building complex applications. 
             Here is a glimpse into my professional evolution.

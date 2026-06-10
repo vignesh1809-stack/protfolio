@@ -1,11 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ScrollFloat from './ScrollFloat';
 
 const skills = [
-  { category: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Redux"] },
-  { category: "Backend", items: ["Node.js", "Express", "Microservices", "PostgreSQL", "MongoDB", "RabbitMQ"] },
-  { category: "DevOps & Cloud", items: ["Docker", "Kubernetes", "AWS EC2", "AWS S3", "CI/CD", "Nginx"] },
+  { category: "Languages", items: ["Java", "Python", "JavaScript", "Bash"] },
+  { category: "Backend", items: ["Spring Boot", "Spring MVC", "Spring Security", "REST API", "Microservices", "Kafka"] },
+  { category: "Data & DB", items: ["MySQL", "Stored Procedures", "Query Optimization", "Performance Tuning"] },
+  { category: "CI/CD & DevOps", items: ["GitHub Actions", "Docker", "Git", "Linux", "Bash Scripting"] },
+  { category: "Frontend & UI", items: ["React.js", "Redux", "HTML5", "CSS3", "ES6"] },
+  { category: "Gen AI", items: ["LangChain", "OpenAI API", "Google Gemini", "RAG", "ChromaDB", "NLP"] },
 ];
 
 export default function Skills() {
@@ -24,9 +28,18 @@ export default function Skills() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-16"
         >
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-            Technical <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400">Arsenal</span>
-          </h2>
+          <div className="mb-6">
+            <ScrollFloat
+              animationDuration={1}
+              ease='back.inOut(2)'
+              scrollStart='center bottom+=50%'
+              scrollEnd='bottom bottom-=40%'
+              stagger={0.03}
+              textClassName="text-5xl md:text-7xl font-bold text-white tracking-tight"
+            >
+              Technical Arsenal
+            </ScrollFloat>
+          </div>
           <p className="text-gray-400 text-lg max-w-2xl leading-relaxed">
             A comprehensive stack enabling end-to-end development of scalable applications.
           </p>
