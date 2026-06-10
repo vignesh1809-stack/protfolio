@@ -7,7 +7,7 @@ import {
   useTransform,
   MotionValue,
 } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 
 // Icons (Using simple SVGs or lucid-react if available, but I'll use SVG here for zero-deps)
@@ -41,8 +41,6 @@ const Icons = {
 const DOCK_ITEMS = [
   { id: "home", icon: Icons.Home, label: "Home", href: "#home" },
   { id: "projects", icon: Icons.Code, label: "Projects", href: "#projects" },
-  { id: "testimonials", icon: Icons.Star, label: "Testimonials", href: "#testimonials" },
-  { id: "blog", icon: Icons.BookOpen, label: "Blog", href: "#blog" },
   { id: "skills", icon: Icons.Zap, label: "Skills", href: "#skills" },
   { id: "journey", icon: Icons.Compass, label: "Journey", href: "#journey" },
   { id: "contact", icon: Icons.Mail, label: "Contact", href: "#contact" },
@@ -56,7 +54,7 @@ export default function Dock() {
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex h-16 items-end gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 pb-3 backdrop-blur-md"
+      className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-50 flex h-16 items-end gap-2 sm:gap-4 rounded-2xl border border-white/10 bg-white/5 px-2 sm:px-4 pb-3 backdrop-blur-md origin-bottom scale-90 sm:scale-100"
     >
       {DOCK_ITEMS.map((item) => (
         <DockIcon key={item.id} mouseX={mouseX} item={item} />
@@ -73,13 +71,30 @@ function DockIcon({
   item: (typeof DOCK_ITEMS)[0];
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [baseWidth, setBaseWidth] = useState(40);
+  const [hoverWidth, setHoverWidth] = useState(80);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setBaseWidth(32); // Smaller base width on mobile
+        setHoverWidth(48); // Smaller hover width on mobile
+      } else {
+        setBaseWidth(40);
+        setHoverWidth(80);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const distance = useTransform(mouseX, (val) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
   });
 
-  const widthSync = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  const widthSync = useTransform(distance, [-150, 0, 150], [baseWidth, hoverWidth, baseWidth]);
   const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   return (

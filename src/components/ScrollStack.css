@@ -12,6 +12,26 @@
   will-change: scroll-position;
 }
 
+/* Custom Scrollbar for the ScrollStack container */
+.scroll-stack-scroller::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-stack-scroller::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.scroll-stack-scroller::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.scroll-stack-scroller::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
 .scroll-stack-inner {
   padding: 5vh 2rem 5rem;
   min-height: 100%;
